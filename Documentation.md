@@ -295,7 +295,84 @@ These models represent:
 
 ---
 
-### 2.5.5 Conclusion of Reliability Growth Assessment
+### 2.5.5 Result of Model Comparison
+
+As detailed in **Section 2.4**, we selected the following two models based on performance:
+- **GM (E, F, C)**: Strongest fit, lowest AIC/BIC/SSE, highly responsive to effort data.
+- **DW2 (None)**: Best PSSE, making it the most generalizable for unseen data.
+
+This selection balanced model precision with generalization and shaped further analysis in effort allocation and decision-making.
+
+---
+
+### 2.5.6 Result of Range Analysis
+
+As configured in **Section 2.2**, we used the full failure interval range (Subset = 31) for all analyses. The dataset showed consistent failure trends across all intervals, with the cumulative failure plot (MVF) revealing stabilization after interval 25. Thus, the entire range was retained for maximal data utilization and reliability insights.
+
+---
+
+### 2.5.7 Failure Rate and Reliability Plots
+
+Plots illustrating failure rate and reliability over time were generated through:
+- **Failure Intensity Graphs** (Section 2.3.3)
+- **MVF/Cumulative Reliability Graphs** (Section 2.3.3)
+
+These highlight:
+- Declining failure intensity in the latter intervals.
+- Converging MVF curves for most models, supporting reliability stabilization.
+
+These plots serve as a visual confirmation of system improvement through ongoing testing and effort investment.
+
+---
+
+### 2.5.8 Discussion on Decision-Making with a Target Failure Rate
+
+Although we did not explicitly set a failure intensity threshold (kept at 0.0000), the analysis framework supports configuring such targets. Using effort allocation features, stakeholders can:
+- Determine effort needed to meet desired failure intensity.
+- Plan release schedules around reaching specific reliability thresholds.
+- Assess trade-offs between additional testing and cost/benefit.
+
+GM (E, F, C), given its superior prediction of failure trends, would be optimal for future decision-making involving target failure rate validation.
+
+---
+
+### 2.5.9 Advantages and Disadvantages of Reliability Growth Analysis
+
+#### ✅ Advantages:
+- Quantifies system reliability trends over time.
+- Models can incorporate real-world effort factors (e.g., testing intensity, complexity).
+- Supports proactive planning and release readiness evaluations.
+- Enables failure prediction and testing resource allocation.
+
+#### ⚠️ Disadvantages:
+- Requires failure data in interval format (structured and clean).
+- Model selection and interpretation demand statistical understanding.
+- Overfitting risk with excessive covariate inclusion.
+- Output interpretation may vary based on input effort estimation quality.
+
+---
+
+### 2.5.10 Difficulties Encountered and Lessons Learned
+
+#### ⚠️ Challenges:
+- Understanding and properly configuring hazard models.
+- Interpreting AIC/BIC/SSE vs PSSE during model selection.
+- Aligning predictions with testing intervals and effort parameters.
+- Matching graph outputs to report expectations.
+
+#### ✅ Overcome By:
+- Referring to the provided academic papers on C-SFRAT usage.
+- Step-by-step validation through each tab and setting.
+- Visual confirmation of trends via intensity and MVF plots.
+
+#### 🧠 Lessons Learned:
+- Covariate-aware models drastically improve reliability forecasting.
+- Visual analytics are essential for confirming statistical insights.
+- Full use of C-SFRAT’s effort planning tools enhances actionable decision-making.
+
+---
+
+### 2.5.11 Conclusion of Reliability Growth Assessment
 
 The C-SFRAT analysis supports the following:
 - The system exhibits **reliability growth**, as shown by cumulative failure stabilization and declining intensity in certain intervals.
@@ -303,4 +380,3 @@ The C-SFRAT analysis supports the following:
 - **GM (E, F, C)** should be used as the primary guide for future resource allocation and readiness evaluation.
 
 With this analysis complete, the next section will compare this methodology with alternative reliability evaluation techniques such as RDC.
-

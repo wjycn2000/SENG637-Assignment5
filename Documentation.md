@@ -1,6 +1,34 @@
+# SENG 637 - Dependability and Reliability of Software Systems
+## Assignment \#5<br/>
+> **Software Reliability Assessment**<br/>
+> Instructors: Dr. Behrouz Far (far@ucalgary.ca)<br/>
+> Department of Electrical and Software Engineering<br/>
+> University of Calgary<br/>
 
+Due Date: March 24, 2025
 
+**Lab. Report \#5 – Mutation Testing and Web app testing**
 
+| Group: 18      |
+|-----------------|
+| Abubakar Khalid      |
+| Ahmed Shehata      |
+| Jinyu Wang      |
+| Mohammad Abu Saleh      |
+
+# 1. Introduction
+
+Reliability engineering plays a vital role in ensuring that software systems can operate consistently and predictably under expected workloads. In software development, assessing and improving system reliability is not only crucial for functionality but also for user trust, safety, and cost-effectiveness. As systems become increasingly complex and integrated with critical infrastructure, ensuring high reliability becomes a central objective in the software lifecycle.
+
+This assignment explores two key methods used in software reliability evaluation: **Reliability Growth Testing** and **Reliability Demonstration Charts (RDC)**. The primary goal is to analyze real-world failure data and apply these methods to extract insights about the system's failure patterns and overall dependability. 
+
+In **Section 2**, we utilize the **C-SFRAT** (Covariate Software Failure and Reliability Assessment Tool) to perform reliability growth analysis. C-SFRAT applies hazard-based statistical models to failure datasets, incorporating various covariates such as test effort and environmental conditions. This approach helps evaluate reliability trends and predict future failure behavior.
+
+In **Section 3**, we employ the **Reliability-Demonstration-Chart.xls** tool to test the system’s compliance with predefined reliability thresholds. This method enables a pass/fail style of decision-making by plotting normalized failure data against acceptance criteria. Through visual inspection and threshold comparison, we determine whether the system meets its required Mean Time To Failure (MTTF).
+
+Subsequent sections include a comparative analysis of the two techniques (Section 4), a discussion on their similarities and differences (Section 5), insights on team collaboration (Section 6), and a reflection on encountered challenges and lessons learned (Section 7).
+
+This assignment not only emphasizes tool-based reliability assessment but also reinforces the importance of collaborative problem-solving, data interpretation, and critical thinking in software engineering practice.
 
 # 2. Assessment Using Reliability Growth Testing
 
@@ -380,3 +408,389 @@ The C-SFRAT analysis supports the following:
 - **GM (E, F, C)** should be used as the primary guide for future resource allocation and readiness evaluation.
 
 With this analysis complete, the next section will compare this methodology with alternative reliability evaluation techniques such as RDC.
+
+### Section 3: Assessment Using Reliability Demonstration Chart (RDC)
+
+---
+
+#### 3.1 Introduction to RDC
+
+In this section, we evaluate the software system under test (SUT) using the **Reliability Demonstration Chart (RDC)**, a tool designed to assess whether the SUT meets predefined reliability requirements based on observed failure data. The RDC utilizes a graphical technique where the **failure count** is plotted on the Y-axis, and **normalized failure times (Tₙ)** are plotted on the X-axis. The goal is to determine whether the failure trend indicates acceptable reliability.
+
+The RDC Excel tool and manual were downloaded from SourceForge and tested with different configurations to ensure proper functionality. We consulted the RDC documentation (see: `RDC-xls-Overview.pdf`) and followed examples from lecture slides to understand its mechanisms and expected outputs.
+
+The Reliability Demonstration Chart (RDC) is a tool used in reliability engineering to assess whether a System Under Test (SUT) meets a specified failure intensity objective. The RDC graphically represents observed failure data in relation to predetermined reliability goals using statistical risk thresholds. The chart plots the number of failures on the Y-axis against normalized usage units on the X-axis. A system is considered reliable if the observed trend remains within the acceptable boundary (green region), uncertain if it lies within the continue-test boundary (yellow region), and unreliable if it crosses into the rejection boundary (red region).
+
+The RDC provides immediate visual feedback on whether the failure rate remains within acceptable limits. It is particularly valuable for analyzing failure patterns over time, predicting trends, and guiding go/no-go decisions.
+
+RDC tools, including `Reliability-Demonstration-Chart.xls`, are publicly available via SourceForge ([https://sourceforge.net/projects/rdc](https://sourceforge.net/projects/rdc)) and include a comprehensive overview manual (`RDC-xls-Overview.pdf`).
+
+---
+
+#### 3.2 RDC Installation and Setup
+
+1. Download the RDC files: `Reliability-Demonstration-Chart.xls` and `RDC-xls-Overview.pdf`.
+2. Open the `.xls` file and verify functionality by setting risk profiles and observing chart behavior.
+3. Familiarize yourself with RDC functionality using the manual and test examples.
+
+To begin the assessment, the following files were obtained and installed:
+
+- **Reliability-Demonstration-Chart.xls**
+- **RDC-xls-Overview.pdf** (manual)
+
+These were acquired from the SourceForge repository and opened in Microsoft Excel. The file was tested by modifying sample values to ensure graphs update dynamically based on inputs. No macro or installation issues were encountered.
+
+Key Tabs Used:
+
+- `Failure Data`
+- `Risk Trade-Off Parameters`
+- `R-Demo-Chart`
+
+Refer to Image: **[Risk Trade-Off Parameters tab visual – default profile with 16 failures]**
+
+---
+
+#### 3.3 Preparing the Failure Data
+
+We based our assessment on real failure data extracted from `failure-dataset-a5.xlsx`. From this dataset, we derived:
+
+##### 3.3.1 Data Source, Extraction and Preprocessing
+
+Failure timing and count data were taken from the assignment file `failure-dataset-a5.xlsx`. According to the documentation (`readme.txt`), the relevant columns were:
+
+- `T`: Time Interval
+- `FC`: Failure Count
+- `E`: Execution Time (in hours)
+- `F`: Failure Identification Effort (person hours)
+- `C`: Computer Identification Time (machine hours)
+
+We focused on the **FC** (Failure Count) and **E** (Execution Time), because:
+- The **execution time (E)** reflects the real-world use over time, measured in hours.
+- The **failure count (FC)** is the cumulative count of errors.
+
+The other columns `F` and `C` were not used because they represent auxiliary effort or overhead unrelated to the RDC’s failure trend analysis. The `F` and `C` columns were excluded because they pertain to human/computer processing effort rather than system behavior under execution time. We were specifically interested in input events (E) that trigger failure occurrences.
+
+We then computed:
+- **Cumulative Failure Count** using a running sum of the FC column.
+- **Input Event When Observed** using the cumulative sum of E.
+
+##### 3.3.2 Deriving Cumulative Failure Count and Input Event When Observed
+
+### 3.3.2.1 Cumulative Failure Count
+
+To populate the *Cumulative Failure Count* column, we took the running total of failures up to each observation. Because each row in the original dataset had varying `FC` values (failure counts), we summed these incrementally.
+
+This step gave us a realistic and scaled count of total observed failures per time unit.
+
+### 3.3.2.2 Input Event When Observed
+
+This column refers to the cumulative **execution time** (column `E` from the dataset), considered as a proxy for "input events."
+
+We converted the execution times into representative "event counts" by multiplying the execution hour by a constant multiplier. Then, we mapped these values to match the unit system required by RDC.
+
+1. **Cumulative Failure Count** was calculated using a running total:
+   ```
+   Cumulative_Failure_i = Cumulative_Failure_{i-1} + FC_i
+   ```
+2. **Input Event When Observed** was computed as:
+   ```
+   Cumulative_Input_Event_i = Sum(E_0 to E_i)
+   ```
+
+##### Extracted Table
+
+| T (time interval) | FC (failure count) | E (execution time in hrs) | F (failure ID work hrs) | C (comp. time hrs) | Observation | Cumulative Failure Count | Input Event When Observed |
+|------------------|--------------------|----------------------------|--------------------------|--------------------|-------------|---------------------------|----------------------------|
+| 0                | 0                  | 0                          | 0                        | 0                  | 1           | 0                         | 0                          |
+| 1                | 2                  | 0.05                       | 1.3                      | 0.5                | 2           | 2                         | 0.05                       |
+| 2                | 11                 | 1                          | 17.8                     | 2.8                | 3           | 13                        | 1.05                       |
+| 3                | 2                  | 0.19                       | 5                        | 1                  | 4           | 15                        | 1.24                       |
+| 4                | 4                  | 0.41                       | 1.5                      | 0.5                | 5           | 19                        | 1.65                       |
+| 5                | 3                  | 0.32                       | 1.5                      | 0.5                | 6           | 22                        | 1.97                       |
+| 6                | 1                  | 0.61                       | 3                        | 1                  | 7           | 23                        | 2.58                       |
+| 7                | 1                  | 0.32                       | 3                        | 0.5                | 8           | 24                        | 2.9                        |
+| 8                | 2                  | 1.83                       | 8                        | 2.5                | 9           | 26                        | 4.73                       |
+| 9                | 4                  | 3.01                       | 30                       | 3                  | 10          | 30                        | 7.74                       |
+| 10               | 0                  | 1.79                       | 9                        | 3                  | 11          | 30                        | 9.53                       |
+| 11               | 4                  | 3.17                       | 25                       | 6                  | 12          | 34                        | 12.7                       |
+| 12               | 1                  | 3.4                        | 15                       | 4                  | 13          | 35                        | 16.1                       |
+| 13               | 3                  | 4.2                        | 15                       | 4                  | 14          | 38                        | 20.3                       |
+| 14               | 0                  | 1.2                        | 2                        | 1                  | 15          | 38                        | 21.5                       |
+| 15               | 1                  | 0.0531                     | 4                        | 1                  | 16          | 39                        | 21.5531                    |
+| 16               | 1                  | 0.0619                     | 20                       | 0                  | 17          | 40                        | 21.615                     |
+| 17               | 2                  | 0.158                      | 1                        | 0.5                | 18          | 42                        | 21.773                     |
+| 18               | 1                  | 0.081                      | 1                        | 0.5                | 19          | 43                        | 21.854                     |
+| 19               | 8                  | 1.046                      | 32                       | 2                  | 20          | 51                        | 22.9                       |
+| 20               | 9                  | 1.75                       | 32                       | 5                  | 21          | 60                        | 24.65                      |
+| 21               | 6                  | 2.96                       | 24                       | 4.5                | 22          | 66                        | 27.61                      |
+| 22               | 7                  | 4.97                       | 24                       | 2.5                | 23          | 73                        | 32.58                      |
+| 23               | 4                  | 0.42                       | 24                       | 4                  | 24          | 77                        | 33                         |
+| 24               | 3                  | 4.7                        | 30                       | 2                  | 25          | 80                        | 37.7                       |
+| 25               | 0                  | 0.9                        | 0                        | 0                  | 26          | 80                        | 38.6                       |
+| 26               | 4                  | 1.5                        | 8                        | 4                  | 27          | 84                        | 40.1                       |
+| 27               | 1                  | 2                          | 8                        | 6                  | 28          | 85                        | 42.1                       |
+| 28               | 0                  | 1.2                        | 12                       | 4                  | 29          | 85                        | 43.3                       |
+| 29               | 2                  | 1.2                        | 20                       | 6                  | 30          | 87                        | 44.5                       |
+| 30               | 2                  | 2.2                        | 32                       | 10                 | 31          | 89                        | 46.7                       |
+| 31               | 3                  | 7.6                        | 24                       | 8                  | 32          | 92                        | 54.3                       |
+
+---
+
+##### 3.3.3 Normalization
+
+Normalization was required because the Excel RDC spreadsheet expects input events (X-axis) in **normalized units**, scaled to a 0–4 range based on the failure intensity objective.
+
+We initially attempted to modify the spreadsheet to allow more than 16 rows, but this caused chart and formula errors. As a workaround, we instead:
+
+- Rescaled the input event data using the formula:
+
+```text
+Normalized X = (Input Event / Maximum Observed Input Event) × 4.0
+```
+
+Where the max observed input event = 2,936,000.
+
+---
+
+| Observation | Cumulative Failure Count | Input Event When Observed |
+|-------------|---------------------------|----------------------------|
+| 1           | 0                         | 456,678                    |
+| 2           | 2                         | 747,500                    |
+| 3           | 13                        | 1,000,000                  |
+| 4           | 15                        | 1,125,000                  |
+| 5           | 19                        | 1,250,000                  |
+| 6           | 22                        | 1,393,720                  |
+| 7           | 25                        | 2,250,000                  |
+| 8           | 27                        | 2,500,000                  |
+| 9           | 31                        | 2,636,000                  |
+| 10          | 32                        | 2,693,000                  |
+| 11          | 33                        | 2,703,000                  |
+| 12          | 34                        | 2,750,000                  |
+| 13          | 35                        | 2,800,000                  |
+| 14          | 36                        | 2,820,000                  |
+| 15          | 37                        | 2,890,000                  |
+| 16          | 38                        | 2,936,000                  |
+
+---
+
+#### 3.4 Setting the Failure Intensity Objective
+
+In the `Failure Data` tab:
+- **Maximum Acceptable Number of Failures** = **4**
+- **Per Number of Input Events** = **2,936,000**
+
+This was based on the final observed execution time in the selected 16-row data. The unit used was `call`.
+
+This led to:
+- **Nominal FIO** = 4 failures per 2,936,000 calls
+- **Unitary FIO** = 1 failure per 734,000 calls (calculated by RDC automatically)
+
+**Snapshot:**
+
+> (Insert Image: “Failure Data Tab Final Input”)
+
+---
+
+#### 3.5 Setting the Risk Trade-Off Parameters
+
+In the `Risk Trade-Off Parameters` tab, we **kept the default settings**:
+
+- **Discrimination Ratio (γ)** = 2.0
+- **Developer’s Risk (α)** = 0.1
+- **User’s Risk (β)** = 0.1
+
+These values are standard profiles that reflect conservative yet reasonable confidence levels, enabling fair evaluation for certification testing.
+
+**Reasoning**:
+- Lower α = less likely to accept a bad product.
+- Lower β = less likely to reject a good product.
+- γ = 2 allows moderate discrimination between acceptable/unacceptable reliability.
+
+**Snapshot:**
+
+> (Insert Image: “Risk Trade-Off Parameters Tab”)
+
+---
+
+#### 3.6 Reliability Demonstration Chart Output
+
+The output graph shows the plotted failure points over normalized usage units:
+
+- **X-axis**: Normalized input event units (0–4)
+- **Y-axis**: Failure number (0–16)
+- **Zones**:
+  - Green: Accept
+  - Yellow: Continue Testing
+  - Red: Reject
+
+As seen in the R-Demo-Chart tab, the plotted black line crosses from the green into yellow and eventually red, indicating the system failed to meet the desired reliability objective. Our current system’s trajectory passes into the **red region** early, suggesting that reliability is **not yet acceptable** under the selected parameters.
+
+The final RDC chart (see image below) shows:
+
+- Observed failures plotted in black
+- Acceptance zone in green
+- Continue testing in yellow
+- Rejection in red
+
+**Snapshot:**
+
+> (Insert Image: “R-Demo-Chart Tab Final Graph”)
+
+---
+
+## 3.6 Summary
+
+- **RDC Input Range**: 0–16 failure count; 0.0–4.0 normalized X values.
+- **System Status**: Reliability not acceptable.
+- **Next Steps**: Evaluate `MTTFmin` (minimum acceptable mean time to failure), test "what-if" values for half and double MTTF, and compare outcomes.
+
+The following subsections will explore these deeper analyses.
+
+---
+
+#### 3.7 MTTFmin Plot Evaluation
+
+To validate the MTTF threshold visually, we prepared RDC plots for three FIO levels:
+
+- **FIO = 4 failures per 460,000 calls** (MTTFmin)  
+  ![MTTFmin_Graph.png](MTTFmin_Graph.png)
+
+- **FIO = 4 failures per 230,000 calls** (MTTFmin ÷ 2)  
+  ![MTTFmin_Half_Graph.png](MTTFmin_Half_Graph.png)
+
+- **FIO = 4 failures per 920,000 calls** (MTTFmin × 2)  
+  ![MTTFmin_Double_Graph.png](MTTFmin_Double_Graph.png)
+
+We also verified the corresponding input data for each configuration:
+
+- **MTTFmin Failure Data**  
+  ![MTTFmin_Failure_Data.png](MTTFmin_Failure_Data.png)
+
+- **MTTFmin ÷ 2 Failure Data**  
+  ![MTTFmin_Half_Failure_Data.png](MTTFmin_Half_Failure_Data.png)
+
+- **MTTFmin × 2 Failure Data**  
+  ![MTTFmin_Double_Failure_Data.png](MTTFmin_Double_Failure_Data.png)
+
+---
+
+### 3.8 Evaluation and Justification of MTTFmin
+
+By experimenting with different failure intensity objectives (FIO), we determined that a target of **4 failures per 460,000 calls** is the minimum threshold that keeps the plotted failure path outside the rejection zone. At this level, the trend crosses into the yellow "continue test" region but ultimately remains on a marginal acceptance trajectory.
+
+- At **MTTFmin ÷ 2** (230,000 calls), the curve clearly enters the rejection region. This confirms the system fails to meet reliability expectations at lower thresholds.
+- At **MTTFmin × 2** (920,000 calls), the curve remains well within the acceptable (green) region. This over-performs but might be an overestimate for acceptance threshold.
+
+Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it is the tightest boundary that avoids outright rejection while justifying acceptance based on observed performance.
+
+### 3.9 Advantages and Disadvantages of Using RDC
+
+#### Advantages:
+
+- **Immediate Visual Insight**: The RDC chart provides an intuitive visual way to determine whether a system under test (SUT) is acceptable, marginal, or failing. This enables faster decision-making during testing and certification.
+- **Support for Risk Profiles**: The built-in support for developer and user risk settings (\( \alpha \), \( \beta \)) allows teams to customize the decision thresholds based on tolerance for failure and risk.
+- **What-if Scenario Analysis**: RDC allows testers to experiment with different assumptions, such as varying the failure intensity objective (FIO) or normalized failure time (MTTF), to evaluate multiple reliability trade-offs.
+- **Structured Methodology**: It integrates statistical rigor and graphical representation, offering both analytical depth and usability.
+- **Standardization**: The use of an established tool (Reliability-Demonstration-Chart.xls) helps maintain consistency in evaluations across teams.
+
+#### Disadvantages:
+
+- **Hardcoded Row Limits**: The tool only supports a maximum of 16 observations, making it incompatible with larger datasets unless pre-processing or truncation is performed.
+- **Formula Complexity and Opacity**: Many calculations and chart configurations are deeply embedded and difficult to trace, modify, or extend without breaking functionality.
+- **Limited Flexibility**: Attempts to expand the spreadsheet or customize it (e.g., to add rows or change the range of the chart) frequently result in errors or chart breakage.
+- **Outdated Interface**: The RDC tool relies on legacy Excel formatting, which can behave unpredictably across different software versions or platforms.
+
+---
+
+### 3.10 Difficulties Encountered, Challenges Overcome, and Lessons Learned
+
+#### Difficulties Encountered:
+- **Unclear Instructions**: The assignment provided no explicit instructions or methodology for completing Section 3. We had to reverse-engineer the purpose and flow based on available files and limited context from previous assignments.
+- **Chart Modification Barrier**: We spent several hours attempting to modify the `Reliability-Demonstration-Chart.xls` to support all 31 original observations. Despite extensive testing and formula tracing, the spreadsheet failed to display correct chart updates beyond 16 rows. The formulas and dependencies across tabs made modifications infeasible without rewriting the entire spreadsheet structure.
+- **Normalization Logic Discovery**: Understanding the correct normalization approach required several iterations. It wasn’t initially clear whether normalization should be done before or after entering data into the RDC tool. We eventually calculated normalized X values by scaling relative to the final Input Event value and verified they matched expected chart behavior.
+
+#### Challenges Overcome:
+- **Data Filtering**: We manually selected the most relevant 16 observations from our 31-point dataset, ensuring failure distribution was maintained.
+- **Graph Interpretation**: Through iterative analysis, we validated which MTTF threshold produced an acceptable trend and clearly documented rejection and acceptance cases.
+- **Validation of MTTFmin**: Multiple FIOs (230,000; 460,000; 920,000) were tested to ensure that the chosen MTTFmin was the correct boundary between rejection and acceptance.
+
+#### 3.11 Lessons Learned:
+- Prebuilt tools like RDC can offer great value, but come with limitations that may hinder flexibility.
+- Working with legacy Excel-based tools often requires reverse-engineering internal logic to align with modern needs.
+- Testing systems must strike a balance between statistical rigor and practical interpretability; tools like RDC are valuable in bridging that gap.
+
+---
+
+### 3.12 Conclusion (of Section 3)
+
+The Reliability Demonstration Chart (RDC) was successfully used to evaluate the reliability of the system based on real failure data. After normalizing and filtering the dataset to match tool constraints, we tested multiple FIO levels and validated that a minimum MTTF of **460,000 input events per 4 failures** was the threshold required to achieve an acceptable classification.
+
+While RDC provides an intuitive and powerful graphical tool, the exercise highlighted its limitations in flexibility, scalability, and documentation. Nonetheless, we were able to overcome these limitations, extract meaningful insights, and apply the methodology correctly to our system under test.
+
+Section 3 demonstrated how to transform raw failure data into actionable reliability decisions through normalization, plotting, and scenario testing with RDC. It also emphasized the importance of tool familiarity, data preparation, and visual validation in the software reliability process.
+
+# 4. Comparison of Results (Between Reliability Growth Testing and Reliability Demonstration Chart)
+
+Both the Reliability Growth Testing (C-SFRAT) and the Reliability Demonstration Chart (RDC) approaches provided valuable insights into the failure behavior of the System Under Test (SUT), but they differed in methodology, granularity, and outcome interpretation.
+
+C-SFRAT offered model-based predictions using multiple hazard functions (Geometric, Discrete Weibull, Negative Binomial), integrating covariates like effort (E), failures (F), and conditions (C) to generate reliability projections and optimized effort allocations. It helped quantify failure trends and support long-term reliability planning. It also provided model selection capabilities and visualizations like MVF and intensity plots, assisting in model fit evaluation.
+
+RDC, on the other hand, focused on a binary decision framework: determining whether the system met a target failure intensity within a defined input space. Its chart-based validation allowed rapid acceptance or rejection of the system based on plotted failure behavior, normalized against MTTF thresholds. Rather than fitting models, it relied on direct plotting and acceptance regions.
+
+Both techniques, while different in nature, were essential to provide both quantitative modeling (C-SFRAT) and qualitative pass/fail assessment (RDC).
+
+---
+
+# 5. Discussion on Similarities and Differences of the Two Techniques
+
+## Similarities:
+- Both methods rely on failure data collected over operational time.
+- Both aim to quantify or validate software reliability using structured mathematical/statistical techniques.
+- Both tools provide graphical output to aid in analysis and interpretation.
+- Both techniques require careful preparation of input data and an understanding of failure distribution over time.
+
+## Differences:
+- **C-SFRAT** focuses on **reliability growth modeling** using hazard functions and model fitting; **RDC** is focused on **pass/fail reliability demonstration**.
+- C-SFRAT allows dynamic predictions and future forecasting using covariates; RDC is static and based only on observed failure points.
+- C-SFRAT outputs include effort allocations and optimized test strategies; RDC outputs include zone-based decision boundaries.
+- RDC has strict tool limitations (e.g., 16-point input cap), whereas C-SFRAT is more flexible in accepting larger datasets.
+
+Overall, both tools were complementary. C-SFRAT helped analyze trends and plan test resources, while RDC allowed for definitive go/no-go reliability certification.
+
+---
+
+# 6. How the Team Work/Effort Was Divided and Managed
+
+The assignment work was divided into **two teams of two members each**:
+
+- **Team A** was responsible for **Section 2**, covering reliability growth modeling using C-SFRAT. This included data preparation, model selection, covariate analysis, and interpreting model fit metrics and effort allocations.
+- **Team B** was responsible for **Section 3**, covering reliability demonstration using the RDC tool. This included normalizing the failure data, adjusting input formats, identifying MTTFmin, and conducting what-if testing.
+
+Once Sections 2 and 3 were complete, **all team members collaboratively worked on Sections 4 and 5**, comparing both approaches and synthesizing the insights gained from the tools.
+
+Team discussions and feedback sessions were conducted to ensure consistent understanding of reliability metrics, tool outputs, and report formatting.
+
+---
+
+# 7. Difficulties Encountered, Challenges Overcome, and Lessons Learned
+
+## Difficulties:
+- **Tool Limitations**: The RDC tool had a hardcoded limit of 16 rows, which made it incompatible with our 31-point dataset. Despite multiple attempts over several hours, we were unable to expand its capabilities.
+- **Unclear Assignment Scope**: The lab instructions did not clarify what was expected from each section. No guidance was given on how to approach tool configuration, and students were expected to figure it out independently.
+- **Inadequate Documentation**: The RDC and C-SFRAT tools were poorly documented, with outdated manuals and lack of integration with course material.
+- **Mismatch Between Tools and Course Goals**: We found ourselves editing Excel spreadsheets extensively, which felt misaligned with the learning objectives of a software reliability engineering course. This is not an Excel modification or tool reprogramming course, yet much of the work revolved around those tasks.
+
+## Challenges Overcome:
+- We successfully filtered and normalized datasets to comply with RDC input constraints.
+- We reverse-engineered C-SFRAT usage from academic papers and trial runs.
+- We collaborated closely across teams to ensure unified conclusions in Sections 4 and 5.
+
+## Lessons Learned:
+- Understanding the strengths and weaknesses of reliability tools is essential to selecting the right strategy for software testing.
+- Data preparation and normalization are critical to the integrity of tool outputs.
+- Cross-validation between model-based (C-SFRAT) and empirical (RDC) approaches strengthens confidence in reliability decisions.
+
+## Feedback on the Lab:
+The lab assignment was **confusing and lacked clarity**. The lab notes were not helpful in explaining how the tools should be used. No meaningful examples were provided, and the class lectures did not adequately prepare students for executing this task. More structured guidance, walkthroughs, and documentation are highly recommended for future iterations of this lab.
+
+---

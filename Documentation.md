@@ -413,7 +413,7 @@ With this analysis complete, the next section will compare this methodology with
 
 ---
 
-## 3.1 Introduction to RDC
+## 3.1 Introduction to Reliability Demonstration Chart
 
 In this section, we evaluate the software system under test (SUT) using the **Reliability Demonstration Chart (RDC)**, a tool designed to assess whether the SUT meets predefined reliability requirements based on observed failure data. The RDC utilizes a graphical technique where the **failure count** is plotted on the Y-axis, and **normalized failure times (Tₙ)** are plotted on the X-axis. The goal is to determine whether the failure trend indicates acceptable reliability.
 
@@ -721,7 +721,7 @@ Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it
 
 ---
 
-## 3.11 Conclusion (of Section 3)
+## 3.11 Conclusion Reliability Demonstration Chart
 
 The Reliability Demonstration Chart (RDC) was successfully used to evaluate the reliability of the system based on real failure data. After normalizing and filtering the dataset to match tool constraints, we tested multiple FIO levels and validated that a minimum MTTF of **460,000 input events per 4 failures** was the threshold required to achieve an acceptable classification.
 

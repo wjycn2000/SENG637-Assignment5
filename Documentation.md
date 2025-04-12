@@ -176,7 +176,6 @@ These settings enabled forecasting model behavior across five additional testing
 
 The prediction table contains the estimated cumulative failures for each model across intervals.
 
-- ![Table Screenshot](attachment:Tab2.PNG)
 - Exported to: [Download Tab2_MVF.xlsx](./Tab2_MVF.xlsx), [Download Tab2_Intensity.xlsx](./Tab2_Intensity.xlsx)
 
 #### Key Values at Interval 25 (from `Tab2_MVF.xlsx`):

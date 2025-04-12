@@ -638,7 +638,7 @@ The final RDC chart (see image below) shows:
 
 ---
 
-## 3.6 Summary
+### 3.6.1 Summary
 
 - **RDC Input Range**: 0–16 failure count; 0.0–4.0 normalized X values.
 - **System Status**: Reliability not acceptable.
@@ -714,14 +714,14 @@ Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it
 - **Graph Interpretation**: Through iterative analysis, we validated which MTTF threshold produced an acceptable trend and clearly documented rejection and acceptance cases.
 - **Validation of MTTFmin**: Multiple FIOs (230,000; 460,000; 920,000) were tested to ensure that the chosen MTTFmin was the correct boundary between rejection and acceptance.
 
-## 3.11 Lessons Learned:
+### Lessons Learned:
 - Prebuilt tools like RDC can offer great value, but come with limitations that may hinder flexibility.
 - Working with legacy Excel-based tools often requires reverse-engineering internal logic to align with modern needs.
 - Testing systems must strike a balance between statistical rigor and practical interpretability; tools like RDC are valuable in bridging that gap.
 
 ---
 
-## 3.12 Conclusion (of Section 3)
+## 3.11 Conclusion (of Section 3)
 
 The Reliability Demonstration Chart (RDC) was successfully used to evaluate the reliability of the system based on real failure data. After normalizing and filtering the dataset to match tool constraints, we tested multiple FIO levels and validated that a minimum MTTF of **460,000 input events per 4 failures** was the threshold required to achieve an acceptable classification.
 

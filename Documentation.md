@@ -54,7 +54,7 @@ Each subsection below explains the procedure followed, the options selected (and
 
 ## 2.2 Tab 1 – Data Upload and Model Selection
 
-![Tab1 Screenshot](attachment:Tab1.PNG)
+![Tab1.PNG](Tab1.PNG)
 
 This tab is the starting point of the reliability assessment process, where the dataset is imported and the core modeling configuration is set.
 
@@ -95,9 +95,9 @@ These were chosen based on:
 ### 2.2.5 Output
 - Two critical plots were generated from this step:
   1. **Failure Intensity Plot**: Shows defect discovery rate across intervals.
-     - ![Intensity](attachment:Tab1_Intensity_Plot.png)
+     - ![Tab1_Intensity_Plot.png](Tab1_Intensity_Plot.png)
   2. **MVF (Mean Value Function) Plot**: Displays cumulative defect trend over time.
-     - ![MVF](attachment:Tab1_MVF_Plot.png)
+     - ![Tab1_MVF_Plot.png](Tab1_MVF_Plot.png)
 
 We also exported their tabular data:
 - `Tab1_Intensity.xlsx` – Defect rate over time
@@ -108,7 +108,7 @@ These plots confirm an initial rise in failures, followed by gradual stabilizati
 
 ## 2.3 Tab 2 – Model Results and Predictions
 
-![Tab2 Screenshot](attachment:Tab2.PNG)
+![Tab2.PNG](Tab2.PNG)
 
 This tab allowed us to visualize and compare the fitted models' predictions against the actual failure data using plots and numerical tables.
 
@@ -149,7 +149,7 @@ These settings enabled forecasting model behavior across five additional testing
 
 #### A. Failure Intensity Plot
 
-![Intensity](attachment:Tab2_Intensity_Plot.png)
+![Tab2_Intensity_Plot.png](Tab2_Intensity_Plot.png)
 
 - The bar graph shows actual failure intensity per interval.
 - Overlaid curves represent each model’s predicted intensity.
@@ -162,7 +162,7 @@ These settings enabled forecasting model behavior across five additional testing
 
 #### B. MVF (Mean Value Function) Plot
 
-![MVF](attachment:Tab2_MVF_Plot.png)
+![Tab2_MVF_Plot.png](Tab2_MVF_Plot.png)
 
 - The MVF plot shows cumulative predicted failures.
 - **GM (E, F, C)** and **NB2 (E, C)** closely track the observed stepwise failure curve.

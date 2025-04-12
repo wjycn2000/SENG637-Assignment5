@@ -409,11 +409,11 @@ The C-SFRAT analysis supports the following:
 
 With this analysis complete, the next section will compare this methodology with alternative reliability evaluation techniques such as RDC.
 
-### Section 3: Assessment Using Reliability Demonstration Chart (RDC)
+# Section 3: Assessment Using Reliability Demonstration Chart (RDC)
 
 ---
 
-#### 3.1 Introduction to RDC
+## 3.1 Introduction to RDC
 
 In this section, we evaluate the software system under test (SUT) using the **Reliability Demonstration Chart (RDC)**, a tool designed to assess whether the SUT meets predefined reliability requirements based on observed failure data. The RDC utilizes a graphical technique where the **failure count** is plotted on the Y-axis, and **normalized failure times (Tₙ)** are plotted on the X-axis. The goal is to determine whether the failure trend indicates acceptable reliability.
 
@@ -427,7 +427,7 @@ RDC tools, including `Reliability-Demonstration-Chart.xls`, are publicly availab
 
 ---
 
-#### 3.2 RDC Installation and Setup
+## 3.2 RDC Installation and Setup
 
 1. Download the RDC files: `Reliability-Demonstration-Chart.xls` and `RDC-xls-Overview.pdf`.
 2. Open the `.xls` file and verify functionality by setting risk profiles and observing chart behavior.
@@ -450,11 +450,11 @@ Refer to Image: **[Risk Trade-Off Parameters tab visual – default profile with
 
 ---
 
-#### 3.3 Preparing the Failure Data
+## 3.3 Preparing the Failure Data
 
 We based our assessment on real failure data extracted from `failure-dataset-a5.xlsx`. From this dataset, we derived:
 
-##### 3.3.1 Data Source, Extraction and Preprocessing
+### 3.3.1 Data Source, Extraction and Preprocessing
 
 Failure timing and count data were taken from the assignment file `failure-dataset-a5.xlsx`. According to the documentation (`readme.txt`), the relevant columns were:
 
@@ -474,15 +474,15 @@ We then computed:
 - **Cumulative Failure Count** using a running sum of the FC column.
 - **Input Event When Observed** using the cumulative sum of E.
 
-##### 3.3.2 Deriving Cumulative Failure Count and Input Event When Observed
+### 3.3.2 Deriving Cumulative Failure Count and Input Event When Observed
 
-### 3.3.2.1 Cumulative Failure Count
+#### 3.3.2.1 Cumulative Failure Count
 
 To populate the *Cumulative Failure Count* column, we took the running total of failures up to each observation. Because each row in the original dataset had varying `FC` values (failure counts), we summed these incrementally.
 
 This step gave us a realistic and scaled count of total observed failures per time unit.
 
-### 3.3.2.2 Input Event When Observed
+#### 3.3.2.2 Input Event When Observed
 
 This column refers to the cumulative **execution time** (column `E` from the dataset), considered as a proxy for "input events."
 
@@ -536,7 +536,7 @@ We converted the execution times into representative "event counts" by multiplyi
 
 ---
 
-##### 3.3.3 Normalization
+### 3.3.3 Normalization
 
 Normalization was required because the Excel RDC spreadsheet expects input events (X-axis) in **normalized units**, scaled to a 0–4 range based on the failure intensity objective.
 
@@ -573,7 +573,7 @@ Where the max observed input event = 2,936,000.
 
 ---
 
-#### 3.4 Setting the Failure Intensity Objective
+## 3.4 Setting the Failure Intensity Objective
 
 In the `Failure Data` tab:
 - **Maximum Acceptable Number of Failures** = **4**
@@ -591,7 +591,7 @@ This led to:
 
 ---
 
-#### 3.5 Setting the Risk Trade-Off Parameters
+## 3.5 Setting the Risk Trade-Off Parameters
 
 In the `Risk Trade-Off Parameters` tab, we **kept the default settings**:
 
@@ -612,7 +612,7 @@ These values are standard profiles that reflect conservative yet reasonable conf
 
 ---
 
-#### 3.6 Reliability Demonstration Chart Output
+## 3.6 Reliability Demonstration Chart Output
 
 The output graph shows the plotted failure points over normalized usage units:
 
@@ -648,7 +648,7 @@ The following subsections will explore these deeper analyses.
 
 ---
 
-#### 3.7 MTTFmin Plot Evaluation
+## 3.7 MTTFmin Plot Evaluation
 
 To validate the MTTF threshold visually, we prepared RDC plots for three FIO levels:
 
@@ -674,7 +674,7 @@ We also verified the corresponding input data for each configuration:
 
 ---
 
-### 3.8 Evaluation and Justification of MTTFmin
+## 3.8 Evaluation and Justification of MTTFmin
 
 By experimenting with different failure intensity objectives (FIO), we determined that a target of **4 failures per 460,000 calls** is the minimum threshold that keeps the plotted failure path outside the rejection zone. At this level, the trend crosses into the yellow "continue test" region but ultimately remains on a marginal acceptance trajectory.
 
@@ -683,9 +683,9 @@ By experimenting with different failure intensity objectives (FIO), we determine
 
 Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it is the tightest boundary that avoids outright rejection while justifying acceptance based on observed performance.
 
-### 3.9 Advantages and Disadvantages of Using RDC
+## 3.9 Advantages and Disadvantages of Using RDC
 
-#### Advantages:
+### Advantages:
 
 - **Immediate Visual Insight**: The RDC chart provides an intuitive visual way to determine whether a system under test (SUT) is acceptable, marginal, or failing. This enables faster decision-making during testing and certification.
 - **Support for Risk Profiles**: The built-in support for developer and user risk settings (\( \alpha \), \( \beta \)) allows teams to customize the decision thresholds based on tolerance for failure and risk.
@@ -693,7 +693,7 @@ Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it
 - **Structured Methodology**: It integrates statistical rigor and graphical representation, offering both analytical depth and usability.
 - **Standardization**: The use of an established tool (Reliability-Demonstration-Chart.xls) helps maintain consistency in evaluations across teams.
 
-#### Disadvantages:
+### Disadvantages:
 
 - **Hardcoded Row Limits**: The tool only supports a maximum of 16 observations, making it incompatible with larger datasets unless pre-processing or truncation is performed.
 - **Formula Complexity and Opacity**: Many calculations and chart configurations are deeply embedded and difficult to trace, modify, or extend without breaking functionality.
@@ -702,26 +702,26 @@ Thus, 460,000 was selected as the **minimum acceptable MTTF (MTTFmin)** since it
 
 ---
 
-### 3.10 Difficulties Encountered, Challenges Overcome, and Lessons Learned
+## 3.10 Difficulties Encountered, Challenges Overcome, and Lessons Learned
 
-#### Difficulties Encountered:
+### Difficulties Encountered:
 - **Unclear Instructions**: The assignment provided no explicit instructions or methodology for completing Section 3. We had to reverse-engineer the purpose and flow based on available files and limited context from previous assignments.
 - **Chart Modification Barrier**: We spent several hours attempting to modify the `Reliability-Demonstration-Chart.xls` to support all 31 original observations. Despite extensive testing and formula tracing, the spreadsheet failed to display correct chart updates beyond 16 rows. The formulas and dependencies across tabs made modifications infeasible without rewriting the entire spreadsheet structure.
 - **Normalization Logic Discovery**: Understanding the correct normalization approach required several iterations. It wasn’t initially clear whether normalization should be done before or after entering data into the RDC tool. We eventually calculated normalized X values by scaling relative to the final Input Event value and verified they matched expected chart behavior.
 
-#### Challenges Overcome:
+### Challenges Overcome:
 - **Data Filtering**: We manually selected the most relevant 16 observations from our 31-point dataset, ensuring failure distribution was maintained.
 - **Graph Interpretation**: Through iterative analysis, we validated which MTTF threshold produced an acceptable trend and clearly documented rejection and acceptance cases.
 - **Validation of MTTFmin**: Multiple FIOs (230,000; 460,000; 920,000) were tested to ensure that the chosen MTTFmin was the correct boundary between rejection and acceptance.
 
-#### 3.11 Lessons Learned:
+## 3.11 Lessons Learned:
 - Prebuilt tools like RDC can offer great value, but come with limitations that may hinder flexibility.
 - Working with legacy Excel-based tools often requires reverse-engineering internal logic to align with modern needs.
 - Testing systems must strike a balance between statistical rigor and practical interpretability; tools like RDC are valuable in bridging that gap.
 
 ---
 
-### 3.12 Conclusion (of Section 3)
+## 3.12 Conclusion (of Section 3)
 
 The Reliability Demonstration Chart (RDC) was successfully used to evaluate the reliability of the system based on real failure data. After normalizing and filtering the dataset to match tool constraints, we tested multiple FIO levels and validated that a minimum MTTF of **460,000 input events per 4 failures** was the threshold required to achieve an acceptable classification.
 

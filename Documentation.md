@@ -101,7 +101,7 @@ These were chosen based on:
 
 We also exported their tabular data:
 - [Download Tab1_Intensity.xlsx](./Tab1_Intensity.xlsx) – Defect rate over time
-- `Tab1_MVF.xlsx` – Cumulative failures by interval
+- [Download Tab1_MVF.xlsx](./Tab1_MVF.xlsx) – Cumulative failures by interval
 
 ### Interpretation (for next section):
 These plots confirm an initial rise in failures, followed by gradual stabilization—indicative of potential reliability growth. Formal model results and prediction insights are discussed in Section 2.3.
@@ -177,7 +177,7 @@ These settings enabled forecasting model behavior across five additional testing
 The prediction table contains the estimated cumulative failures for each model across intervals.
 
 - ![Table Screenshot](attachment:Tab2.PNG)
-- Exported to: `Tab2_MVF.xlsx`, `Tab2_Intensity.xlsx`
+- Exported to: [Download Tab2_MVF.xlsx](./Tab2_MVF.xlsx), [Download Tab2_Intensity.xlsx](./Tab2_Intensity.xlsx)
 
 #### Key Values at Interval 25 (from `Tab2_MVF.xlsx`):
 | Model          | Predicted Cumulative Failures |
@@ -256,7 +256,7 @@ We used the default metric weights:
 ### 2.4.4 Exported Results
 
 The full comparison table is saved as:
-- `Tab3.xlsx`
+- [Download Tab3.xlsx](./Tab3.xlsx)
 
 These insights directly inform our testing resource decisions in the next step — Tab 4: Effort Allocation.
 

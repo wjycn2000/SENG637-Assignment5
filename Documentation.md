@@ -100,7 +100,7 @@ These were chosen based on:
      - ![Tab1_MVF_Plot.png](Tab1_MVF_Plot.png)
 
 We also exported their tabular data:
-- `[Download Tab1_Intensity.xlsx](./Tab1_Intensity.xlsx)` – Defect rate over time
+- [Download Tab1_Intensity.xlsx](./Tab1_Intensity.xlsx) – Defect rate over time
 - `Tab1_MVF.xlsx` – Cumulative failures by interval
 
 ### Interpretation (for next section):

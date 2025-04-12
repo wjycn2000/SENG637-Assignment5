@@ -315,7 +315,7 @@ These models represent:
 
 ---
 
-### 2.5.4 Key Insights
+## 2.6 Key Insights
 
 - **GM (E, F, C)** remains the most resource-efficient and accurate model for effort planning.
 - **DW2 (C)**, while simpler, requires more effort to yield comparable results.
@@ -323,7 +323,7 @@ These models represent:
 
 ---
 
-### 2.5.5 Result of Model Comparison
+### 2.6.1 Result of Model Comparison
 
 As detailed in **Section 2.4**, we selected the following two models based on performance:
 - **GM (E, F, C)**: Strongest fit, lowest AIC/BIC/SSE, highly responsive to effort data.
@@ -333,13 +333,13 @@ This selection balanced model precision with generalization and shaped further a
 
 ---
 
-### 2.5.6 Result of Range Analysis
+### 2.6.2 Result of Range Analysis
 
 As configured in **Section 2.2**, we used the full failure interval range (Subset = 31) for all analyses. The dataset showed consistent failure trends across all intervals, with the cumulative failure plot (MVF) revealing stabilization after interval 25. Thus, the entire range was retained for maximal data utilization and reliability insights.
 
 ---
 
-### 2.5.7 Failure Rate and Reliability Plots
+### 2.6.3 Failure Rate and Reliability Plots
 
 Plots illustrating failure rate and reliability over time were generated through:
 - **Failure Intensity Graphs** (Section 2.3.3)
@@ -353,7 +353,7 @@ These plots serve as a visual confirmation of system improvement through ongoing
 
 ---
 
-### 2.5.8 Discussion on Decision-Making with a Target Failure Rate
+### 2.6.4 Discussion on Decision-Making with a Target Failure Rate
 
 Although we did not explicitly set a failure intensity threshold (kept at 0.0000), the analysis framework supports configuring such targets. Using effort allocation features, stakeholders can:
 - Determine effort needed to meet desired failure intensity.
@@ -364,7 +364,7 @@ GM (E, F, C), given its superior prediction of failure trends, would be optimal 
 
 ---
 
-### 2.5.9 Advantages and Disadvantages of Reliability Growth Analysis
+### 2.6.5 Advantages and Disadvantages of Reliability Growth Analysis
 
 #### ✅ Advantages:
 - Quantifies system reliability trends over time.
@@ -380,27 +380,27 @@ GM (E, F, C), given its superior prediction of failure trends, would be optimal 
 
 ---
 
-### 2.5.10 Difficulties Encountered and Lessons Learned
+## 2.7 Difficulties Encountered and Lessons Learned
 
-#### ⚠️ Challenges:
+### ⚠️ Challenges:
 - Understanding and properly configuring hazard models.
 - Interpreting AIC/BIC/SSE vs PSSE during model selection.
 - Aligning predictions with testing intervals and effort parameters.
 - Matching graph outputs to report expectations.
 
-#### ✅ Overcome By:
+### ✅ Overcome By:
 - Referring to the provided academic papers on C-SFRAT usage.
 - Step-by-step validation through each tab and setting.
 - Visual confirmation of trends via intensity and MVF plots.
 
-#### 🧠 Lessons Learned:
+### 🧠 Lessons Learned:
 - Covariate-aware models drastically improve reliability forecasting.
 - Visual analytics are essential for confirming statistical insights.
 - Full use of C-SFRAT’s effort planning tools enhances actionable decision-making.
 
 ---
 
-### 2.5.11 Conclusion of Reliability Growth Assessment
+## 2.8 Conclusion of Reliability Growth Assessment
 
 The C-SFRAT analysis supports the following:
 - The system exhibits **reliability growth**, as shown by cumulative failure stabilization and declining intensity in certain intervals.

@@ -790,7 +790,7 @@ Team discussions and feedback sessions were conducted to ensure consistent under
 - Data preparation and normalization are critical to the integrity of tool outputs.
 - Cross-validation between model-based (C-SFRAT) and empirical (RDC) approaches strengthens confidence in reliability decisions.
 
-## Feedback on the Lab:
+# 8. Feedback on the Lab:
 The lab assignment was **confusing and lacked clarity**. The lab notes were not helpful in explaining how the tools should be used. No meaningful examples were provided, and the class lectures did not adequately prepare students for executing this task. More structured guidance, walkthroughs, and documentation are highly recommended for future iterations of this lab.
 
 ---

@@ -430,7 +430,7 @@ RDC tools, including `Reliability-Demonstration-Chart.xls`, are publicly availab
 
 ## 3.2 RDC Installation and Setup
 
-1. Download the RDC files: `Reliability-Demonstration-Chart.xls` and `RDC-xls-Overview.pdf`.
+1. Download the RDC files: [Download Reliability-Demonstration-Chart.xls](./Reliability-Demonstration-Chart.xls) and `RDC-xls-Overview.pdf`.
 2. Open the `.xls` file and verify functionality by setting risk profiles and observing chart behavior.
 3. Familiarize yourself with RDC functionality using the manual and test examples.
 
@@ -453,7 +453,7 @@ Refer to Image: **[Risk Trade-Off Parameters tab visual – default profile with
 
 ## 3.3 Preparing the Failure Data
 
-We based our assessment on real failure data extracted from `failure-dataset-a5.xlsx`. From this dataset, we derived:
+We based our assessment on real failure data extracted from [Download failure-dataset-a5.xlsx](./failure-dataset-a5.xlsx). From this dataset, we derived:
 
 ### 3.3.1 Data Source, Extraction and Preprocessing
 

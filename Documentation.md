@@ -204,7 +204,7 @@ These results form the basis for model comparison (Tab 3) and resource planning 
 
 ## 2.4 Tab 3 – Model Comparison
 
-![Tab3 Screenshot](attachment:Tab3.PNG)
+![Tab3.PNG](Tab3.PNG)
 
 The **Model Comparison** tab in C-SFRAT allows us to evaluate the performance of each model using quantitative metrics. This helps identify the most accurate and appropriate models for analysis and prediction.
 
@@ -262,8 +262,6 @@ These insights directly inform our testing resource decisions in the next step �
 
 ## 2.5 Tab 4 – Effort Allocation
 
-![Tab4 Screenshot](attachment:Tab4.PNG)
-
 The **Effort Allocation** tab in C-SFRAT is designed to help guide resource planning by estimating how testing effort correlates with defect discovery. It includes two allocation strategies:
 - **Allocation 1**: Estimate how many defects can be discovered within a given test budget.
 - **Allocation 2**: Estimate the minimum effort required to uncover a specified number of additional defects.
@@ -285,6 +283,8 @@ These models represent:
 
 ### 2.5.2 Allocation 1 – Maximize Defect Discovery Within Budget
 
+![Tab4_Allocation1.PNG](Tab4_Allocation1.PNG)
+
 **Budget**: `20.00` effort units
 
 **Procedure**:
@@ -300,6 +300,8 @@ These models represent:
 ---
 
 ### 2.5.3 Allocation 2 – Minimum Effort for Target Defect Count
+
+![Tab4_Allocation2.PNG](Tab4_Allocation2.PNG)
 
 **Target Additional Defects**: `5`
 
